@@ -1,0 +1,9 @@
+model goodCart {
+    id Int @id @default(autoincrement())
+    cartId Int @unique
+    goodId Int @unique
+    cart Cart @relation(fields: [cartId], references: [id])
+    good Good @relation(fields: [goodId], references: [id])
+
+    @@map("good_cart")
+}

@@ -1,0 +1,10 @@
+model Good {
+    id Int @id @default(autoincrement())
+    title String
+    description String
+    imgUrl String
+    price Int
+    goodCart goodCart[]
+
+    @@map("good")
+}
