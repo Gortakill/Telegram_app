@@ -20,24 +20,20 @@ export class UserService {
 
     async GetUserById(id: number): Promise<User | {message: string}> {
         const user = await this.prisma.user.findUnique({where: {id}})
-        if(!user){
-            return {
-                message: 'User not found'
-            }
-        }
         return user
     }
 
     async updateUserInfo(dto: UserDto, id: number): Promise<{message: string}> {
-        const user = await this.prisma.user.findUnique({where: {id}})
-        if(!user){
-            return {
-                message: 'User not found'
-            }
-        }
         await this.prisma.user.update({where: {id}, data: {...dto}})
         return {
             message: 'User was updated'
+        }
+    }
+    
+    async deleteUser(id: number): Promise<{message: string}> {
+        await this.prisma.user.delete({where: {id}})
+        return {
+            message: 'User was deleted'
         }
     }
 }
